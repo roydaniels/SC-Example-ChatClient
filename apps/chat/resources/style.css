@@ -1,0 +1,28 @@
+h1 {
+font-family: "Helvetica Neue Light", "HelveticaNeue-Light", inherit;
+font-size: 28px !important;
+line-height: 28px !important;
+}
+
+#chatBox {
+height: 300px;
+overflow: auto;
+font: 13px Helvetica, Arial;
+}
+#chatBox ul {
+margin: 0px;
+}
+#chatBox ul li {
+padding: 8px;
+margin: 0;
+}
+#chatBox ul li:nth-child(odd) {
+background: #F6F6F6;
+}
+
+.chat .chatBorder {
+border-color: #eee;
+}
+.chat .chatAdd {
+background: #333;
+}
