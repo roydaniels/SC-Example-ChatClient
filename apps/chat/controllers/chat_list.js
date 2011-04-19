@@ -28,10 +28,7 @@ Chat.chatListController = SC.ArrayController.create(
     }
     
     var obj = Chat.ChatModel.create({ user: usr, message: msg });
-    this.pushObject(obj);
-    
-    // Scroll to the bottom of the chat box
-    $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
+    this.addObject(obj);
   },
   
   _esc: function(msg){

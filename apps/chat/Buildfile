@@ -10,5 +10,5 @@
 # This line tells SproutCore's CSS preprocessor what class names to target.
 # Since your app has a theme named 'chat', and it is based on SproutCore's
 # Ace theme (named 'ace'), it is set to 'ace.chat'.
-config :chat, :css_theme => 'ace.chat', :required => [:sproutcore, "sproutcore/statechart", "sproutcore/animation", :"Socket.IO"]
+config :chat, :css_theme => 'ace.chat', :required => [:sproutcore, "sproutcore/statechart", "sproutcore/animation", :"Socket.IO", :"iScroll"]
 

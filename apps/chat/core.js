@@ -14,23 +14,27 @@ Chat = SC.Application.create(
   /** @scope Chat.prototype */ {
 
   NAMESPACE: 'Chat',
-  VERSION: '0.1.0',
-
-  // This is your application store.  You will use this store to access all
-  // of your model data.  You can also set a data source on this store to
-  // connect to a backend server.  The default setup below connects the store
-  // to any fixtures you define.
-  store: SC.Store.create().from(SC.Record.fixtures),
   
-  socket: new io.Socket('localhost', {
-    port: 8124, 
-  	//rememberTransport: false
-  }),
+  chatBoxScroller: null,
+  
+  onAppLoaded: function () {
+    if(SC.platform.touch) {
+  	  Chat.invokeLater(function () {
+    		Chat.chatBoxScroller = new iScroll('chatBox');
+    		Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
+    	}, 100);
+    }
+  },
   
   // Sends a message to the server via sockets
 	sendMessageToServer: function (message) {
 	  this.socket.send(message);
-	}
+	},
+	
+  socket: new io.Socket('localhost', {
+    port: 8124, 
+  	rememberTransport: false
+  })
   
 });
 
@@ -40,6 +44,7 @@ Chat.ChatModel = SC.Object.extend({
 });
 
 Chat.mixin( /** @scope Chat */ { 
+  
   statechart: SC.Statechart.create({
 
     // Set tracing on to debug statecharts if you like
@@ -51,7 +56,8 @@ Chat.mixin( /** @scope Chat */ {
 
       enterState: function() { 
         Chat.socket.connect();
-        Chat.getPath('mainPage.mainPane').append(); 
+        Chat.getPath('mainPage.mainPane').append();
+        SC.Event.add(window, "load", Chat.onAppLoaded) ;
       },
       
       sendMessage: function(evt, data) {

@@ -2,6 +2,8 @@ SproutCore Example App - Chat Client
 
 This is a remake of the sample chat client from the Socket.IO GitHub repo (https://github.com/LearnBoost/Socket.IO-node/tree/master/example) written in SproutCore in about 150 lines of code!
 
+EDIT: Added iScroll4 to this as well for scrolling on touch devices!
+
 Prerequisites:
 
 1. Install Node.js (https://github.com/joyent/node/wiki/Installation)
