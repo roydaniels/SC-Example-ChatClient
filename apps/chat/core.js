@@ -23,6 +23,12 @@ Chat = SC.Application.create(
     		Chat.chatBoxScroller = new iScroll('chatBox');
     		Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
     	}, 100);
+    } else { 
+      // Comment out if you do not want to use iScroll on the desktop
+      Chat.invokeLater(function () {
+    		Chat.chatBoxScroller = new iScroll('chatBox', { hideScrollbar: true }); // Set hideScrollbar to false to always show the scrollbar
+    		Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
+    	}, 100);
     }
   },
   
