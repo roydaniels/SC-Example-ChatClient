@@ -13,13 +13,19 @@ Chat.mainPage = SC.Page.design({
   mainPane: SC.MainPane.design({
     defaultResponder: 'Chat.statechart',
     
-    childViews: 'titleView chatView sendChatView'.w(),
+    childViews: 'topToolbar chatView sendChatView'.w(),
     
-    titleView: SC.LabelView.design({
-      layout: { centerX: 0, top: 10, width: 800, height: 30 },
-      tagName: "h1", 
-      value: "SC Sample Chat Client",
-    }),   
+    topToolbar: SC.ToolbarView.design({
+      childViews: 'menuTitle'.w(),
+      
+      menuTitle: SC.LabelView.design({
+        layout: { height: 22, left: 50, right: 50, centerY: 0 },
+        classNames: 'title'.w(),
+        textAlign: SC.ALIGN_CENTER,
+        fontWeight: SC.BOLD_WEIGHT,
+        value: "SC Sample Chat Client",
+      }),
+    }),
     chatView: SC.View.design({
       layout: { centerX: 0, top: 50, width: 800, height: 300, border: 1 },
       classNames: 'chatWrapper chatBorder'.w(),

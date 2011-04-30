@@ -1,15 +1,15 @@
 sc_require('controllers/chat_list');
 
 Chat.chatListView = SC.TemplateCollectionView.extend({
-  contentBinding: 'Chat.chatListController',
+  contentBinding: 'Chat.chatListController.arrangedObjects',
   
   arrayContentDidChange: function() {
     sc_super();
     
     if(Chat.chatBoxScroller) {
         Chat.chatBoxScroller.refresh();
-    		Chat.chatBoxScroller.scrollToElement('li:last-child', 0); // Scroll to the bottom of the chat box when using iScroll
-    } //else if(!SC.platform.touch && SC.$('#chatBox')[0]) SC.$('#chatBox').scrollTop(SC.$('#chatBox')[0].scrollHeight);
+    		if(Chat.chatBoxScroller.vScrollbar) Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
+    } //else if(!SC.platform.touch && SC.$('#chatBox')[0] && !Chat.chatBoxScroller) SC.$('#chatBox').scrollTop(SC.$('#chatBox')[0].scrollHeight);
     // Uncomment the else if statement if you are not using iScroll on the desktop
   }
   
