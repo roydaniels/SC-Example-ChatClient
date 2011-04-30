@@ -19,16 +19,10 @@ Chat = SC.Application.create(
   
   onAppLoaded: function () {
     if(SC.platform.touch) {
-  	  Chat.invokeLater(function () {
-    		Chat.chatBoxScroller = new iScroll('chatBox');
-    		if(Chat.chatBoxScroller.vScrollbar) Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
-    	}, 100);
+  	  Chat.invokeLater(Chat._setupChatScroller, 100);
     } else { 
       // Comment out if you do not want to use iScroll on the desktop
-      Chat.invokeLater(function () {
-    		Chat.chatBoxScroller = new iScroll('chatBox', { hideScrollbar: true, snap: 'li' }); // Set hideScrollbar to false to always show the scrollbar
-    		if(Chat.chatBoxScroller.vScrollbar) Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
-    	}, 100);
+      Chat.invokeLater(Chat._setupChatScroller, 100);
     }
   },
   
@@ -40,7 +34,12 @@ Chat = SC.Application.create(
   socket: new io.Socket('localhost', {
     port: 8124, 
   	rememberTransport: false
-  })
+  }),
+  
+  _setupChatScroller: function() {
+    Chat.chatBoxScroller = new iScroll('chatBox', { hideScrollbar: true, snap: 'li' }); // Set hideScrollbar to false to always show the scrollbar
+		if(Chat.chatBoxScroller.vScrollbar) Chat.chatBoxScroller.scrollToElement('li:last-child', 0);
+  }
   
 });
 
